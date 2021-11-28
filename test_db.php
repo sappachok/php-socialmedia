@@ -1,6 +1,6 @@
 <?php
     echo "<h1>Database connect test.</h1>";
-    echo $b;
+    
     // new mysqli("[host]", "[username]", "[password]") or die("Cannot connect database.");    
     $mysqli = new mysqli("localhost", "root", "") or die("Cannot connect database.");
 
@@ -10,10 +10,7 @@
         echo "Connect Database Success!!<br>";
     }
 
-    $result = $mysqli->query("select * from user"); //SQL
-
-    $_SESSION["user_name"] = $result->user_name;
-    
+    $result = $mysqli->query("select * from user"); //SQL    
 
     // $result = $mysqli->query("select user_id, user_name, fullname from user"); //SQL
     // Comment 
