@@ -42,7 +42,9 @@
         echo "<td>".$obj->user_id."</td>";
         echo "<td>".$obj->user_name."</td>";
         echo "<td>".$obj->full_name."</td>";
-        echo "<td><a href='edit.php' class='btn btn-info'><i class='fa fa-pencil'></i> แก้ไข</a> <a href='delete.php?user_id=".$obj->user_id."' class='btn btn-danger'><i class='fa fa-trash'></i> ลบ</a></td>";
+        echo "<td>
+            <a href='edit.php?user_id=".$obj->user_id."' class='btn btn-info'><i class='fa fa-pencil'></i> แก้ไข</a> 
+            <a href='delete.php?user_id=".$obj->user_id."' class='btn btn-danger'><i class='fa fa-trash'></i> ลบ</a></td>";
         echo "</tr>";     
     }
     echo "</tbody>";
