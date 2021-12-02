@@ -26,7 +26,7 @@
     <li class="nav-item">
       <a class="nav-link" href="#">Link 2</a>
     </li>
-
+    
     <!-- Dropdown -->
     
   </ul>
@@ -36,7 +36,7 @@
         <?php echo $_SESSION["user_name"]; ?>
       </a>
       <div class="dropdown-menu dropdown-menu-right">
-        <a class="dropdown-item" href="#">แก้ไขข้อมูลส่วนตัว</a>
+        <a class="dropdown-item" href="edit_profile.php?user_id=<?php echo $_SESSION["user_id"]; ?>">แก้ไขข้อมูลส่วนตัว</a>
         <a class="dropdown-item" href="#">ออกจากระบบ</a>
       </div>
     </li>
@@ -52,6 +52,7 @@
     echo $_SESSION["full_name"]."<br>";    
 ?>
 
+    <p><a href="add_post.php">สร้างโพสใหม่</a></p>
 </div>
 
 </body>

@@ -28,6 +28,8 @@
         //echo "num row: ".$result->num_rows."<br>";
         if($result->num_rows > 0) {
             $obj = $result->fetch_object();
+            
+            $_SESSION["user_id"] = $obj->user_id;
             $_SESSION["user_name"] = $obj->user_name;
             $_SESSION["full_name"] = $obj->full_name;
             $_SESSION["login"] = true;
