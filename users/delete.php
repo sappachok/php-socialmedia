@@ -9,6 +9,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+    <p><a href="list.php" class="btn btn-info">กลับไป</a></p>
+    
 <?php
     if(isset($_GET["user_id"])) {
             // new mysqli("[host]", "[username]", "[password]") or die("Cannot connect database.");    

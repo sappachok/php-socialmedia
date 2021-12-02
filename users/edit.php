@@ -39,7 +39,7 @@
     $user_id = $_GET["user_id"];
     $sql = "select * from user where user_id='$user_id' ";
     //echo $sql;
-    $result = $mysqli->query($sql);    
+    $result = $mysqli->query($sql);
     $obj = $result->fetch_object();
     
 ?>
@@ -47,12 +47,14 @@
     <div class="row">
         <div class="col-sm-12">
         <!-- Start content -->
+        <p><a href="list.php" class="btn btn-info">กลับไป</a></p>
+
         <h1>แก้ไขผู้ใช้</h1>
 
         <form method="post">
         <p>  
             <label>ชื่อผู้ใช้</label>
-            <input type="text" name="user_name" value="<?php if(isset($obj->user_name)) echo $obj->user_name; ?>" class="form-control">
+            <input type="text" name="user_name" value="<?php if(isset($obj->user_name)) echo $obj->user_name; ?>" class="form-control" readonly>
         </p>
         <p>  
             <label>ชื่อ-สกุล</label>
