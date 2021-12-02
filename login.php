@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <html>
 <head>
     <title>Social Media</title>
@@ -24,9 +27,18 @@
         $result = $mysqli->query($sql);
         //echo "num row: ".$result->num_rows."<br>";
         if($result->num_rows > 0) {
+            $obj = $result->fetch_object();
+            $_SESSION["user_name"] = $obj->user_name;
+            $_SESSION["full_name"] = $obj->full_name;
+            $_SESSION["login"] = true;
+
+            if($obj->user_name=="admin") {
+                $_SESSION["admin"] = true;
+            }
+
             echo "<div class='alert alert-success'>การยืนยันตัวตนถูกต้อง</div>";
             echo "<meta http-equiv='refresh' content='2;url=index.php'>";
-
+            
             exit();
         } else {
             echo "<div class='alert alert-danger'>การยืนยันตัวตนไม่ถูกต้อง</div>";            
