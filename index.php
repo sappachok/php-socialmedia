@@ -1,59 +1,34 @@
 <?php
-    session_start();
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
-<body>
-
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <!-- Brand -->
-  <a class="navbar-brand" href="#">mySocial</a>
-
-  <!-- Links -->
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link 1</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link 2</a>
-    </li>
-    
-    <!-- Dropdown -->
-    
-  </ul>
-  <ul class="navbar-nav ml-auto">
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-        <?php echo $_SESSION["user_name"]; ?>
-      </a>
-      <div class="dropdown-menu dropdown-menu-right">
-        <a class="dropdown-item" href="edit_profile.php?user_id=<?php echo $_SESSION["user_id"]; ?>">แก้ไขข้อมูลส่วนตัว</a>
-        <a class="dropdown-item" href="#">ออกจากระบบ</a>
-      </div>
-    </li>
-  </ul>
-</nav>
-<br>
-  
+  session_start();
+  include("header.php");
+  include("db_connect.php");
+?>  
 <div class="container">
 <?php
-    echo "<h1>Hello Social Media</h1><br>";
+  echo "<h1>Hello Social Media</h1><br>";
 
-    echo "สวัสดีคุณ ";
-    echo $_SESSION["full_name"]."<br>";    
+  echo "สวัสดีคุณ ";
+  echo $_SESSION["full_name"]."<br>";    
 ?>
-
-    <p><a href="add_post.php">สร้างโพสใหม่</a></p>
+  <br>
+  <p><a href="add_post.php" class="btn btn-primary">สร้างโพสใหม่</a></p>
+<?php
+  $sql = "select * from message where user_id='".$_SESSION["user_id"]."'
+      order by message_id desc
+    ";
+  $result = $mysqli->query($sql);
+  while ($obj = $result->fetch_object()) {
+    echo "<div class=\"card\">";
+    echo "<div class=\"card-body\"><div>".$obj->message_datetime."</div><p>".$obj->message_body."</p>";
+    echo "<div class='text-right'><a href='edit_post.php?message_id=".$obj->message_id."' class='btn btn-success'>แก้ไข</a>
+        <a href='delete_post.php?message_id=".$obj->message_id."' class='btn btn-danger'>ลบ</a>
+      </div>";
+    echo "</div>";
+    echo "</div>"; 
+    echo "<br>";   
+  }
+?>
 </div>
-
-</body>
-</html>
+<?php
+  include("footer.php");
+?>
