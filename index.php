@@ -2,6 +2,7 @@
   session_start();
   include("header.php");
   include("db_connect.php");
+
 ?>  
 <div class="container">
 <?php
@@ -11,7 +12,10 @@
   echo $_SESSION["full_name"]."<br>";    
 ?>
   <br>
-  <p><a href="add_post.php" class="btn btn-primary">สร้างโพสใหม่</a></p>
+  <p>
+    <a href="add_post.php" class="btn btn-primary">สร้างโพสใหม่</a>
+    <a href="add_photo.php" class="btn btn-success">อัพโหลดรูป</a>
+  </p>
 <?php
   $sql = "select * from message where user_id='".$_SESSION["user_id"]."'
       order by message_id desc

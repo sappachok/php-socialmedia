@@ -2,24 +2,18 @@
     session_start();
     include("header.php");
     include("db_connect.php");
-
-    // new mysqli("[host]", "[username]", "[password]") or die("Cannot connect database.");    
-    $mysqli = new mysqli("localhost", "root", "") or die("Cannot connect database.");
-    $mysqli->select_db("socialmedia") or die("Cannot select database.");
-    if(!$mysqli) echo "Cannot Connect Database!!<br>";
-
+?>
+<div class="container">
+<?php
     if(isset($_POST["save"])) {
-        $user_id = $_GET["user_id"];
+        $message_id = $_GET["message_id"];
+        $message_body = $_POST["message_body"];
 
-        $user_name = $_POST["user_name"];
-        $password = $_POST["password"];
-        $full_name = $_POST["full_name"];
-
-        $sql = "update user set user_name='$user_name', full_name='$full_name', password='$password' 
-            where user_id='$user_id'
+        $sql = "update message set message_body='$message_body'
+            where message_id='$message_id'
         ";
 
-        $result = $mysqli->query($sql);  
+        $result = $mysqli->query($sql);
 
         if($result) {
             echo "<div class='alert alert-success'>บันทึกเสร็จสิ้น</div>";
@@ -35,7 +29,6 @@
     $result = $mysqli->query($sql);
     $obj = $result->fetch_object();
 ?>
-<div class="container"> <!-- container-fluid ขยายเต็มหน้าจอ -->
     <!-- Start content -->
     <p><a href="index.php" class="btn btn-info">กลับไป</a></p>
 

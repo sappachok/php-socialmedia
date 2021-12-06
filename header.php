@@ -1,3 +1,13 @@
+<?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+    if(isset($_SESSION["login"])==false) {
+        echo "<meta http-equiv='refresh' content='2;url=login.php'>";
+        exit();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,8 +43,8 @@
         <?php echo $_SESSION["user_name"]; ?>
       </a>
       <div class="dropdown-menu dropdown-menu-right">
-        <a class="dropdown-item" href="edit_profile.php?user_id=<?php echo $_SESSION["user_id"]; ?>">แก้ไขข้อมูลส่วนตัว</a>
-        <a class="dropdown-item" href="#">ออกจากระบบ</a>
+        <a class="dropdown-item" href="edit_profile.php">แก้ไขข้อมูลส่วนตัว</a>
+        <a class="dropdown-item" href="logout.php">ออกจากระบบ</a>
       </div>
     </li>
   </ul>
