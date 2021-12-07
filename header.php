@@ -44,6 +44,7 @@
       </a>
       <div class="dropdown-menu dropdown-menu-right">
         <a class="dropdown-item" href="edit_profile.php">แก้ไขข้อมูลส่วนตัว</a>
+        <a class="dropdown-item" href="change_password.php">เปลี่ยนรหัสผ่าน</a>
         <a class="dropdown-item" href="logout.php">ออกจากระบบ</a>
       </div>
     </li>
