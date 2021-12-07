@@ -32,6 +32,7 @@
             $_SESSION["user_id"] = $obj->user_id;
             $_SESSION["user_name"] = $obj->user_name;
             $_SESSION["full_name"] = $obj->full_name;
+            $_SESSION["file_photo"] = $obj->file_photo;
             $_SESSION["login"] = true;
 
             if($obj->user_name=="admin") {
