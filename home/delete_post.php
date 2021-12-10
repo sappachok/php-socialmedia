@@ -1,13 +1,14 @@
 <?php
     session_start();
-	include("header.php");
-	include("db_connect.php");
+    //include("config.php");
+    include("header.php");
+    include("db_connect.php");
 ?>
 <div class="container">
-		<p><a href="index.php" class="btn btn-info">กลับไป</a></p>
+    <p><a href="index.php" class="btn btn-info">กลับไป</a></p>
 <?php
-    if(isset($_GET["ms_id"])) {
-        $message_id = $_GET["ms_id"];
+    if(isset($_GET["message_id"])) {
+        $message_id = $_GET["message_id"];
 
         $sql = "delete from message where message_id='$message_id'";
 
@@ -23,5 +24,5 @@
 ?>
 </div>
 <?php
-	include("footer.php");
+  include("footer.php");
 ?>

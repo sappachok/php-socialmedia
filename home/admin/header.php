@@ -23,12 +23,12 @@
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <!-- Brand -->
-  <a class="navbar-brand" href="index.php">mySocial</a>
+  <a class="navbar-brand" href="<?php echo $www_root; ?>">mySocial Admin</a>
 
   <!-- Links -->
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" href="search.php">ค้นหาเพื่อน</a>
+      <!--<a class="nav-link" href="search.php">ค้นหาเพื่อน</a>-->
     </li>
     
     <!-- Dropdown -->
@@ -42,7 +42,7 @@
       <div class="dropdown-menu dropdown-menu-right">
         <a class="dropdown-item" href="edit_profile.php">แก้ไขข้อมูลส่วนตัว</a>
         <a class="dropdown-item" href="change_password.php">เปลี่ยนรหัสผ่าน</a>
-        <a class="dropdown-item" href="logout.php">ออกจากระบบ</a>
+        <a class="dropdown-item" href="<?php echo $www_root; ?>/logout.php">ออกจากระบบ</a>
       </div>
     </li>
   </ul>

@@ -1,5 +1,6 @@
 <?php
-    session_start();        
+    session_start();
+    include("db_connect.php"); 
 ?>
 <html>
 <head>
@@ -13,38 +14,24 @@
 </head>
 <body>
 <?php
-    if(isset($_POST["login"])) {
-            // new mysqli("[host]", "[username]", "[password]") or die("Cannot connect database.");    
-        $mysqli = new mysqli("localhost", "root", "") or die("Cannot connect database.");
-        $mysqli->select_db("socialmedia") or die("Cannot select database.");
-        if(!$mysqli) echo "Cannot Connect Database!!<br>";        
+    if(isset($_POST["regis"])) {
 
         $user_name = $_POST["user_name"];
+        $full_name = $_POST["full_name"];
         $password = $_POST["password"];
 
-        $sql = "select * from user where user_name='$user_name' and password='$password' ";
+        $sql = "insert user (user_name, full_name, password, status)
+            value ('$user_name','$full_name','$password','0') ";
         //echo $sql;
         $result = $mysqli->query($sql);
         //echo "num row: ".$result->num_rows."<br>";
-        if($result->num_rows > 0) {
-            $obj = $result->fetch_object();
-            
-            $_SESSION["user_id"] = $obj->user_id;
-            $_SESSION["user_name"] = $obj->user_name;
-            $_SESSION["full_name"] = $obj->full_name;
-            $_SESSION["file_photo"] = $obj->file_photo;
-            $_SESSION["login"] = true;
-
-            if($obj->user_name=="admin") {
-                $_SESSION["admin"] = true;
-            }
-
-            echo "<div class='alert alert-success'>การยืนยันตัวตนถูกต้อง</div>";
-            echo "<meta http-equiv='refresh' content='2;url=index.php'>";
-            
-            exit();
+        if($result) {
+            echo "<div class='alert alert-success'>ลงทะเบียนเสร็จสิ้น</div>";
+            echo "<meta http-equiv='refresh' content='2;url=login.php'>";
         } else {
-            echo "<div class='alert alert-danger'>การยืนยันตัวตนไม่ถูกต้อง</div>";            
+            echo "<div class='alert alert-danger'>ลงทะเบียนล้มเหลว</div>";
+            echo "<div>$sql</div>";
+            echo "<meta http-equiv='refresh' content='2;url=register.php'>";
         }
     }
 ?>
@@ -53,22 +40,25 @@
         <div class="col-sm-12">
         <!-- Start content -->
         <h1>ลงทะเบียนสมาชิกใหม่</h1>
-
+        <br>
         <form method="post">
+        <p>  
+            <label>ชื่อ-สกุล</label>
+            <input type="text" name="full_name" class="form-control">
+        </p>  
         <p>  
             <label>ชื่อผู้ใช้</label>
             <input type="text" name="user_name" class="form-control">
-        </p>
+        </p>              
         <p>  
             <label>รหัสผ่าน</label>
             <input type="password" name="password" class="form-control">
         </p>   
         <p>
-            <button type="submit" name="login" class="btn btn-primary">เข้าสู่ระบบ</button>
+            <button type="submit" name="regis" class="btn btn-primary">ลงทะเบียน</button>
         </p>              
         </form>
-        <hr>
-        <a href="register.php">ลงทะเบียนใหม่</a>
+        <hr>        
         <!-- End content -->
         </div>
     </div>
