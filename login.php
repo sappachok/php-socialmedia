@@ -22,7 +22,20 @@
         $user_name = $_POST["user_name"];
         $password = $_POST["password"];
 
-        $sql = "select * from user where user_name='$user_name' and password='$password' ";
+        $sql = "select * from user 
+        where user_name='$user_name' 
+        and password='$password' 
+        ";
+        //echo $sql;
+        $result = $mysqli->query($sql);
+        $obj = $result->fetch_object();
+        $status = $obj->status;
+
+        $sql = "select * from user 
+        where user_name='$user_name' 
+        and password='$password' 
+        and status='1'
+        ";
         //echo $sql;
         $result = $mysqli->query($sql);
         //echo "num row: ".$result->num_rows."<br>";
@@ -37,14 +50,20 @@
 
             if($obj->user_name=="admin") {
                 $_SESSION["admin"] = true;
+                echo "<meta http-equiv='refresh' content='2;url=admin/index.php'>";
+            } else {
+                echo "<div class='alert alert-success'>การยืนยันตัวตนถูกต้อง</div>";
+                echo "<meta http-equiv='refresh' content='2;url=index.php'>";
             }
-
-            echo "<div class='alert alert-success'>การยืนยันตัวตนถูกต้อง</div>";
-            echo "<meta http-equiv='refresh' content='2;url=index.php'>";
-            
             exit();
         } else {
-            echo "<div class='alert alert-danger'>การยืนยันตัวตนไม่ถูกต้อง</div>";            
+            if($status==0) {
+                echo "<div class='alert alert-danger'>ชื่อผู้ใช้นี้ยังไม่ได้รับการอนุมัติ</div>";
+            } else if($status==2) {
+                echo "<div class='alert alert-danger'>ชื่อผู้ใช้นี้ถูกยกเลิก</div>";
+            } else {
+                echo "<div class='alert alert-danger'>การยืนยันตัวตนไม่ถูกต้อง</div>";
+            }
         }
     }
 ?>
