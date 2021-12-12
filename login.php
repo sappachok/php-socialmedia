@@ -34,6 +34,7 @@
 
         if($obj) $status = $obj->status;
         else $status = null;
+
         //---------------------------------
 
         $sql = "select * from user 
