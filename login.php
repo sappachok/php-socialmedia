@@ -22,14 +22,19 @@
         $user_name = $_POST["user_name"];
         $password = $_POST["password"];
 
+        //--- check user status
         $sql = "select * from user 
         where user_name='$user_name' 
         and password='$password' 
         ";
+
         //echo $sql;
         $result = $mysqli->query($sql);
         $obj = $result->fetch_object();
-        $status = $obj->status;
+
+        if($obj) $status = $obj->status;
+        else $status = null;
+        //---------------------------------
 
         $sql = "select * from user 
         where user_name='$user_name' 

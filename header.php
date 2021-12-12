@@ -30,6 +30,9 @@
     <li class="nav-item">
       <a class="nav-link" href="search.php">ค้นหาเพื่อน</a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="friend.php">เพื่อนทั้งหมด</a>
+    </li>    
     
     <!-- Dropdown -->
     
