@@ -28,7 +28,7 @@
             $result = $mysqli->query($sql);
             while ($obj = $result->fetch_object()) {
                 echo "<div class='card'>";
-                echo "<div class='card-body'><b>".$obj->user_name."</b> ".$obj->full_name." 
+                echo "<div class='card-body'><a href='page/index.php?user_id=".$obj->user_id."'><b>".$obj->user_name."</b> ".$obj->full_name."</a> 
                 <a href='request.php?user_id=".$obj->user_id."' class='btn btn-success'>ขอเป็นเพื่อน</a>
                 </div>";
                 echo "</div>";
