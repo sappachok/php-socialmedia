@@ -77,10 +77,10 @@
     <div class="row">
         <div class="col-sm-12">
         <!-- Start content -->
-        <h1>ลงทะเบียนสมาชิกใหม่</h1>
+        <h1>ยืนยันตัวตนเข้าสู่ระบบ</h1> 
 
         <form method="post">
-        <p>  
+        <p> 
             <label>ชื่อผู้ใช้</label>
             <input type="text" name="user_name" class="form-control">
         </p>

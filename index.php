@@ -27,10 +27,22 @@
   $result = $mysqli->query($sql);
   while ($obj = $result->fetch_object()) {
     echo "<div class=\"card\">";
-    echo "<div class=\"card-body\"><div>".$obj->message_datetime."</div><p>".$obj->message_body."</p>";
-    echo "<div class='text-right'><a href='edit_post.php?message_id=".$obj->message_id."' class='btn btn-success'>แก้ไข</a>
+    echo "<div class=\"card-body\">";
+    if($obj->message_image != "") {
+        echo "<div><img src='message_image_uploads/".$obj->message_image."' class='img-fluid'></div>";
+    }
+    echo "<div>".$obj->message_datetime."</div>";
+    echo "<p>".$obj->message_body."</p>";
+
+    if($obj->message_image != "") {
+        echo "<div class='text-right'><a href='edit_photo.php?message_id=".$obj->message_id."' class='btn btn-primary'>แก้ไข</a>
         <a href='delete_post.php?message_id=".$obj->message_id."' class='btn btn-danger'>ลบ</a>
       </div>";
+    } else {
+        echo "<div class='text-right'><a href='edit_post.php?message_id=".$obj->message_id."' class='btn btn-success'>แก้ไข</a>
+        <a href='delete_post.php?message_id=".$obj->message_id."' class='btn btn-danger'>ลบ</a>
+      </div>";
+    }
     echo "</div>";
     echo "</div>"; 
     echo "<br>";   
